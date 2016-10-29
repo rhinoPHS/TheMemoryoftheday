@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context="com.skapp.lj.thememoryoftheday.MainActivity">
+
+    <RelativeLayout
+    android:id="@+id/realtive"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:layout_marginTop="72dp">
+
+    <TextView
+        android:id="@+id/txtV_year"
+        style="@style/CustomTextView" />
+    <TextView
+        android:id="@+id/txtV_month"
+        style="@style/CustomTextView"
+        android:layout_toRightOf="@id/txtV_year"/>
+    <TextView
+        android:id="@+id/txtV_day"
+        style="@style/CustomTextView"
+        android:layout_toRightOf="@id/txtV_month"/>
+    <TextView
+        android:id="@+id/txtV_week"
+        android:layout_toRightOf="@id/txtV_day"
+        style="@style/CustomTextView"
+        android:layout_marginRight="16dp"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="2dp"
+        android:background="@color/shape_date"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="2dp"
+        android:background="@color/shape_date"
+        android:layout_marginTop="2dp"
+        android:layout_below="@+id/txtV_year"
+        android:id="@+id/textView2"/>
+</RelativeLayout>
+
+    <view
+        android:layout_marginTop="72dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/realtive"
+        class="com.skapp.lj.thememoryoftheday.MainActivity$LineEditText"
+        android:background="@drawable/shape_date"
+        android:fadingEdge="vertical"
+        android:gravity="top"
+        android:scrollbars="vertical"
+        android:textSize="22sp" />
+
+        <ImageButton
+            android:text="제목"
+            android:layout_centerHorizontal="true"
+            android:minHeight="50dp"
+            android:minWidth="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_date"
+            android:layout_below="@+id/realtive"
+            android:id="@+id/txt_title"
+            android:onClick="onClick"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/realtive"
+            android:background="@color/shape_date"
+            android:layout_alignEnd="@id/txt_title"/>
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:background="@color/shape_date"
+            android:layout_below="@+id/txt_title"
+            android:layout_alignEnd="@id/txt_title"
+            android:layout_marginTop="2dp"/>
+
+
+
+    <RelativeLayout
+        android:gravity="center"
+        android:id="@+id/realtive2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtV_year2"
+            style="@style/CustomTextView"
+            android:text="그"/>
+        <TextView
+            android:text="날"
+            android:id="@+id/txtV_month2"
+            style="@style/CustomTextView"
+            android:layout_toRightOf="@id/txtV_year2"/>
+        <TextView
+            android:text="의"
+            android:id="@+id/txtV_day2"
+            style="@style/CustomTextView"
+            android:layout_toRightOf="@id/txtV_month2"/>
+        <TextView
+            android:id="@+id/txtV_week2"
+            android:layout_toRightOf="@id/txtV_day2"
+            style="@style/CustomTextView"
+            tools:ignore="RtlHardcoded"
+            android:text="기"/>
+        <TextView
+            android:layout_toRightOf="@id/txtV_week2"
+            style="@style/CustomTextView"
+            tools:ignore="RtlHardcoded"
+            android:text="록"/>
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="2dp"
+            android:background="@color/shape_date"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="18dp" />
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="2dp"
+            android:background="@color/shape_date"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/txtV_year2"/>
+    </RelativeLayout>
+
+</RelativeLayout>
