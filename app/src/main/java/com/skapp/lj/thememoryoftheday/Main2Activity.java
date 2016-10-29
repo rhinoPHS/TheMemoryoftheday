@@ -13,6 +13,8 @@ import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 
+import static com.skapp.lj.thememoryoftheday.R.string.month;
+
 
 public class Main2Activity extends FragmentActivity {
 
@@ -20,7 +22,9 @@ public class Main2Activity extends FragmentActivity {
     private static final String NAME = "MainActivity";
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
 
-    private TextView thisMonthTv;
+   // private TextView thisMonthTv;
+    private TextView txtYear;
+    private TextView txtMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,9 @@ public class Main2Activity extends FragmentActivity {
         Button monthButton = (Button) findViewById(R.id.main_monthly_bt);
         Button weekButton = (Button) findViewById(R.id.main_weekly_bt);
         Button dayButton = (Button) findViewById(R.id.main_daily_bt);
-        thisMonthTv = (TextView) findViewById(R.id.this_month_tv);
+        //thisMonthTv = (TextView) findViewById(R.id.this_month_tv);
+        txtYear = (TextView)findViewById(R.id.txtV_year);
+        txtMonth = (TextView)findViewById(R.id.txtV_month);
 
         MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
 
@@ -41,15 +47,17 @@ public class Main2Activity extends FragmentActivity {
             @Override
             public void onChange(int year, int month) {
                 HLog.d(TAG, CLASS, "onChange " + year + "." + month);
-                thisMonthTv.setText(year + "." + (month + 1));
+               // thisMonthTv.setText(year + "." + (month + 1));
+                txtYear.setText(Integer.toString(year).substring(2));
+                txtMonth.setText(Integer.toString(month+1));
             }
         });
 
     }
-    public void setTextDay(int month, int day)
-    {
-        thisMonthTv.setText(month+1 + "." + (day));
-    }
+//    public void setTextDay(int month, int day)
+//    {
+//        thisMonthTv.setText(month+1 + "." + (day));
+//    }
 
 
 

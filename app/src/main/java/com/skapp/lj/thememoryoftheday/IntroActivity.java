@@ -1,5 +1,6 @@
 package com.skapp.lj.thememoryoftheday;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,7 +17,7 @@ public class IntroActivity extends AppCompatActivity {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Intent intent = new Intent(IntroActivity.this, Main2Activity.class);
+            Intent intent = new Intent(IntroActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

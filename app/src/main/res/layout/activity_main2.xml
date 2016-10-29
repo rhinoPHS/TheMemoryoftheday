@@ -11,7 +11,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" >
+        android:paddingRight="10dp">
 
         <Button
             android:id="@+id/main_add_bt"
@@ -55,18 +55,62 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/this_month_tv"
+    <!--<TextView-->
+        <!--android:id="@+id/this_month_tv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#888888" />-->
+
+    <RelativeLayout
+        android:id="@+id/dateRelative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#888888" />
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/txtV_year"
+            style="@style/CustomTextView" />
+
+        <TextView
+            android:text="년"
+            android:id="@+id/txtV_month1"
+            style="@style/CustomTextView"
+            android:layout_toRightOf="@id/txtV_year" />
+
+        <TextView
+            android:id="@+id/txtV_month"
+            style="@style/CustomTextView"
+            android:layout_toRightOf="@id/txtV_month1" />
+
+        <TextView
+            android:text="월"
+            android:id="@+id/txtV_week"
+            style="@style/CustomTextView"
+            android:layout_toRightOf="@id/txtV_month"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="@dimen/line"
+            android:layout_marginTop="21dp"
+            android:background="@color/shape_date" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="200dp"
+            android:layout_height="@dimen/line"
+            android:layout_below="@+id/txtV_year"
+            android:layout_marginTop="2dp"
+            android:background="@color/shape_date" />
+    </RelativeLayout>
 
     <FrameLayout
+        android:layout_marginTop="16dp"
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/main_bottom"
-        android:layout_below="@+id/this_month_tv">
+        android:layout_below="@+id/dateRelative">
 
         <fragment
             android:id="@+id/monthly"

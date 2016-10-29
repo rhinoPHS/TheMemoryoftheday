@@ -20,9 +20,17 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_width">50dp</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:textSize">30sp</item>
-        <item name="android:background">@drawable/shape_date</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/ondaylineframe</item>
+    </style>
 
+    <style name="CustomTextViewDate"  parent="@android:style/Widget.TextView">
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:background">@drawable/ondaylineframe</item>
     </style>
 
 </resources>
