@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:drawableLeft="@android:drawable/ic_menu_add"
-            android:text="@string/add_thing"
+            android:text="@string/add_write"
             android:textSize="14sp" />
 
         <View
