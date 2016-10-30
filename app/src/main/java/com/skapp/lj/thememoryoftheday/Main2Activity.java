@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -50,6 +51,14 @@ public class Main2Activity extends FragmentActivity {
                // thisMonthTv.setText(year + "." + (month + 1));
                 txtYear.setText(Integer.toString(year).substring(2));
                 txtMonth.setText(Integer.toString(month+1));
+            }
+        });
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -8,13 +8,19 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.Calendar;
 
+import com.skapp.lj.thememoryoftheday.quickAction.ActionItem;
+import com.skapp.lj.thememoryoftheday.quickAction.PopupWindows;
+import com.skapp.lj.thememoryoftheday.quickAction.QuickAction;
 
 public class MainActivity extends AppCompatActivity {
     //ActionMenuItem Id
@@ -63,9 +69,45 @@ public class MainActivity extends AppCompatActivity {
         txtV_day.setText(Integer.toString(day));
         txtV_week.setText(day_of_week(day_of_week));
 
+        ActionItem addHeart = new ActionItem();
+        addHeart.setTitle("제목1");
+        addHeart.setIcon(ContextCompat.getDrawable(getApplicationContext(),R.drawable.heart));
 
+        final QuickAction mQuickAction = new QuickAction(MainActivity.this);
 
+        mQuickAction.addActionItem(addHeart);
+        mQuickAction.addActionItem(addHeart);
+        mQuickAction.addActionItem(addHeart);
+        mQuickAction.addActionItem(addHeart);
+        mQuickAction.addActionItem(addHeart);
 
+        // setup the action item click listener
+        mQuickAction
+                .setOnActionItemClickListener(new QuickAction.OnActionItemClickListener() {
+                    public void onItemClick(int pos) {
+
+                        if (pos == 0) { // Add item selected
+                            Toast.makeText(MainActivity.this,
+                                    "PHONE item selected", Toast.LENGTH_SHORT)
+                                    .show();
+                        } else if (pos == 1) { // Accept item selected
+                            Toast.makeText(MainActivity.this,
+                                    "GMAIL item selected", Toast.LENGTH_SHORT)
+                                    .show();
+                        } else if (pos == 2) { // Upload item selected
+                            Toast.makeText(MainActivity.this, "TALK selected",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+        ImageButton imageButton= (ImageButton) this.findViewById(R.id.txt_title);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mQuickAction.show(view);
+            }
+        });
     }
 
     public String day_of_week(int day_of_week) {

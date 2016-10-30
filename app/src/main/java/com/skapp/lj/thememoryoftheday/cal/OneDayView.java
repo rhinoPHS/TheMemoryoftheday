@@ -185,21 +185,21 @@ public class OneDayView extends RelativeLayout {
 
         //msgTv.setText((one.getMessage()==null)?"":one.getMessage());
 
-        switch(one.weather) {
-        case CLOUDY :
-        case SUN_CLOUND :
-            weatherIv.setImageResource(R.drawable.heart);
-            break;
-        case RAINNY :
-            weatherIv.setImageResource(R.drawable.heart);
-            break;
-        case SNOW :
-            weatherIv.setImageResource(R.drawable.heart);
-            break;
-        case SUNSHINE :
-            weatherIv.setImageResource(R.drawable.heart);
-            break;
-        }
+//        switch(one.weather) {
+//        case CLOUDY :
+//        case SUN_CLOUND :
+//            weatherIv.setImageResource(R.drawable.heart);
+//            break;
+//        case RAINNY :
+//            weatherIv.setImageResource(R.drawable.heart);
+//            break;
+//        case SNOW :
+//            weatherIv.setImageResource(R.drawable.heart);
+//            break;
+//        case SUNSHINE :
+//            weatherIv.setImageResource(R.drawable.heart);
+//            break;
+//        }
         
     }
     

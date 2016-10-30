@@ -86,8 +86,8 @@
             android:text="월"
             android:id="@+id/txtV_week"
             style="@style/CustomTextView"
-            android:layout_toRightOf="@id/txtV_month"
-            tools:ignore="RtlHardcoded" />
+            android:layout_toRightOf="@id/txtV_month" />
+
 
         <TextView
             android:layout_width="200dp"

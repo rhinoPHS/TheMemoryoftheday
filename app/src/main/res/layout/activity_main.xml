@@ -71,7 +71,7 @@
         android:background="@drawable/ondaylineframe"
         android:minHeight="50dp"
         android:minWidth="50dp"
-        android:text="제목" />
+        android:text="제목"/>
 
     <TextView
         android:layout_width="50dp"
