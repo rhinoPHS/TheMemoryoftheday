@@ -83,17 +83,17 @@ public class QuickAction extends PopupWindows {
 		View container = (View) inflater.inflate(R.layout.action_item, null);
 
 		ImageView img = (ImageView) container.findViewById(R.id.iv_icon);
-		TextView text = (TextView) container.findViewById(R.id.tv_title);
+//		TextView text = (TextView) container.findViewById(R.id.tv_title);
 
 		if (icon != null)
 			img.setImageDrawable(icon);
 		else
 			img.setVisibility(View.GONE);
 
-		if (title != null)
-			text.setText(title);
-		else
-			text.setVisibility(View.GONE);
+//		if (title != null)
+//			text.setText(title);
+//		else
+//			text.setVisibility(View.GONE);
 
 		final int pos = mChildPos;
 

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtV_month = null;
     TextView txtV_day = null;
     TextView txtV_week = null;
+    ImageButton imageBtn_txt_title = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         txtV_month = (TextView) findViewById(R.id.txtV_month);
         txtV_day = (TextView) findViewById(R.id.txtV_day);
         txtV_week = (TextView) findViewById(R.id.txtV_week);
+        imageBtn_txt_title = (ImageButton)findViewById(R.id.txt_title1);
 
         Calendar today = Calendar.getInstance();
 
@@ -98,11 +100,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "TALK selected",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        else if (pos == 3){
+                            imageBtn_txt_title.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.heart1));
+                        }
                     }
                 });
 
-        ImageButton imageButton= (ImageButton) this.findViewById(R.id.txt_title);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+
+        imageBtn_txt_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mQuickAction.show(view);

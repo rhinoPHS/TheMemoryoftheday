@@ -10,9 +10,9 @@
         android:id="@+id/realtive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="72dp"
-        android:gravity="right"
-        android:layout_marginBottom="8dp">
+        android:gravity="right">
 
         <TextView
             android:id="@+id/txtV_year"
@@ -50,34 +50,41 @@
     </RelativeLayout>
 
     <!--<view xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/body"-->
-        <!--class="com.skapp.lj.thememoryoftheday.MainActivity$LineEditText"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_below="@id/realtive"-->
-        <!--android:layout_marginTop="72dp"-->
-        <!--android:background="@drawable/shape_date"-->
-        <!--android:fadingEdge="vertical"-->
-        <!--android:gravity="top"-->
-        <!--android:scrollbars="vertical"-->
-        <!--android:textSize="22sp" />-->
-
-    <ImageButton
-        android:id="@+id/txt_title"
+    <!--android:id="@+id/body"-->
+    <!--class="com.skapp.lj.thememoryoftheday.MainActivity$LineEditText"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@id/realtive"-->
+    <!--android:layout_marginTop="72dp"-->
+    <!--android:background="@drawable/shape_date"-->
+    <!--android:fadingEdge="vertical"-->
+    <!--android:gravity="top"-->
+    <!--android:scrollbars="vertical"-->
+    <!--android:textSize="22sp" />-->
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/realtive"
+        android:id="@+id/txt_title"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/ondaylineframe"
-        android:minHeight="50dp"
-        android:minWidth="50dp"
-        android:text="제목"/>
+        android:background="@drawable/ondaylineframe">
+
+        <ImageButton
+            android:id="@+id/txt_title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:minWidth="50dp"
+            android:text="제목" />
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="@dimen/line"
-        android:layout_alignEnd="@id/txt_title"
         android:layout_above="@id/txt_title"
+        android:layout_alignEnd="@id/txt_title"
         android:layout_marginBottom="2dp"
         android:background="@color/shape_date" />
 
@@ -95,19 +102,18 @@
         android:layout_height="match_parent"
         android:layout_below="@id/end_line"
         android:layout_marginTop="8dp"
-        android:gravity="center"
         android:background="@drawable/edittextbg"
         android:focusableInTouchMode="true"
-        />
+        android:gravity="center" />
 
 
     <RelativeLayout
         android:id="@+id/realtive2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/txtV_year2"
