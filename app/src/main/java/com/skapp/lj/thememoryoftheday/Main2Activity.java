@@ -1,6 +1,7 @@
 package com.skapp.lj.thememoryoftheday;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
+import com.tsengvn.typekit.TypekitContextWrapper;
 
 import static com.skapp.lj.thememoryoftheday.R.string.month;
 
@@ -63,10 +65,11 @@ public class Main2Activity extends FragmentActivity {
         });
 
     }
-//    public void setTextDay(int month, int day)
-//    {
-//        thisMonthTv.setText(month+1 + "." + (day));
-//    }
+    public void setTextDay(int month, int day)
+    {
+        txtYear.setText(month);
+        txtMonth.setText(day);
+    }
 
 
 
@@ -85,7 +88,10 @@ public class Main2Activity extends FragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newbase) {
+        super.attachBaseContext(TypekitContextWrapper.wrap(newbase));
+    }
 
 }
 

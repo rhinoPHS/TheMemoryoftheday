@@ -18,13 +18,17 @@ package com.skapp.lj.thememoryoftheday;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
@@ -79,6 +83,7 @@ public class MonthlyFragment extends Fragment {
      */
     private VerticalViewPager vvPager;
 
+    private OneMonthView oneMonthView;
     private MonthlySlidePagerAdapter adapter;
     private int mYear = -1;
     private int mMonth = -1;
@@ -115,17 +120,8 @@ public class MonthlyFragment extends Fragment {
 
         HLog.d(TAG, CLASS, "onCreate " + mYear + "." + mMonth);
 
-//        OneMonthView omv = new (OneMonthView)getActivity().findViewById(R.id.relaitve_oneday);
-//        omv.setOnDayClickListener(new OneMonthView.OnDayClickListener() {
-//            @Override
-//            public void onClick(int month, int day) {
-//                Toast.makeText((Main2Activity) getActivity(), month + "/ " + day, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getActivity(), MainActivity.class);
-//                startActivity(intent);
-//                ((Main2Activity) getActivity()).setTextDay(month, day);
-//            }
-//        });
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -146,6 +142,20 @@ public class MonthlyFragment extends Fragment {
         vvPager.setOffscreenPageLimit(1);
 
         return v;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        oneMonthView = (OneMonthView)getActivity().findViewById(R.id.omv);
+
+        oneMonthView.setOnDayClickListener(new OneMonthView.OnDayClickListener() {
+            @Override
+            public void onClick(int month, int day) {
+                ((Main2Activity) getActivity()).setTextDay(month, day);
+            }
+        });
     }
 
     @Override

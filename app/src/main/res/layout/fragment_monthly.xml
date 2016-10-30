@@ -2,11 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skapp.lj.thememoryoftheday.MonthlyFragment" >
+    tools:context="com.skapp.lj.thememoryoftheday.MonthlyFragment">
 
     <com.skapp.lj.thememoryoftheday.VerticalViewPager
         android:id="@+id/vviewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <com.skapp.lj.thememoryoftheday.cal.OneMonthView
+        android:id="@+id/omv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>
