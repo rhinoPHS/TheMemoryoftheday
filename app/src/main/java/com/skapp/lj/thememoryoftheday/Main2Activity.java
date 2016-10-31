@@ -24,12 +24,12 @@ import static com.skapp.lj.thememoryoftheday.R.string.month;
 
 
 public class Main2Activity extends FragmentActivity {
+    final static int ACT_MainActivity = 0;
 
     private static final String TAG = MConfig.TAG;
     private static final String NAME = "MainActivity";
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
 
-   // private TextView thisMonthTv;
     private TextView txtYear;
     private TextView txtMonth;
 
@@ -42,15 +42,13 @@ public class Main2Activity extends FragmentActivity {
         Button monthButton = (Button) findViewById(R.id.main_monthly_bt);
         Button weekButton = (Button) findViewById(R.id.main_weekly_bt);
         Button dayButton = (Button) findViewById(R.id.main_daily_bt);
-        //thisMonthTv = (TextView) findViewById(R.id.this_month_tv);
+
         txtYear = (TextView)findViewById(R.id.txtV_year);
         txtMonth = (TextView)findViewById(R.id.txtV_month);
 
         MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
 
-
         mf.setOnMonthChangeListener(new MonthlyFragment.OnMonthChangeListener() {
-
             @Override
             public void onChange(int year, int month) {
                 HLog.d(TAG, CLASS, "onChange " + year + "." + month);
@@ -58,16 +56,21 @@ public class Main2Activity extends FragmentActivity {
                 txtYear.setText(Integer.toString(year).substring(2));
                 txtMonth.setText(Integer.toString(month+1));
             }
-
             @Override
             public void onDayClick(OneDayView dayView) {
+                int year = dayView.get(Calendar.YEAR);
                 int month =  dayView.get(Calendar.MONTH) + 1;
                 int day = dayView.get(Calendar.DAY_OF_MONTH);
-                Toast.makeText(Main2Activity.this, "Click  " + month + "/" + day, Toast.LENGTH_SHORT)
-                        .show();
+                int day_of_week = dayView.get(Calendar.DAY_OF_WEEK);
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("year",year);
+                intent.putExtra("month",month);
+                intent.putExtra("day",day);
+                intent.putExtra("day_of_week",day_of_week);
+                startActivityForResult(intent,ACT_MainActivity);
             }
         });
-
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +78,6 @@ public class Main2Activity extends FragmentActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override

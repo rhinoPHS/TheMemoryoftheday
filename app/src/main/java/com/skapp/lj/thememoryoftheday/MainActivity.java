@@ -1,6 +1,7 @@
 package com.skapp.lj.thememoryoftheday;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -23,6 +24,8 @@ import com.skapp.lj.thememoryoftheday.quickAction.PopupWindows;
 import com.skapp.lj.thememoryoftheday.quickAction.QuickAction;
 
 public class MainActivity extends AppCompatActivity {
+    //derfault
+    private static  final  int date_default = 0;
     //ActionMenuItem Id
     private  static final  int ID_HEART = 1;
     private  static final  int ID_QUESTION = 2;
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent intent = getIntent();
+
 //        BitmapFactory.Options options = new BitmapFactory.Options();
 //        options.inSampleSize =2;
 //        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main);
@@ -58,13 +63,12 @@ public class MainActivity extends AppCompatActivity {
         txtV_week = (TextView) findViewById(R.id.txtV_week);
         imageBtn_txt_title = (ImageButton)findViewById(R.id.txt_title1);
 
-        Calendar today = Calendar.getInstance();
 
-        int year = today.get(Calendar.YEAR);
+        int year = intent.getIntExtra("year",date_default);
         String txt_year = Integer.toString(year);
-        int month = today.get(Calendar.MONTH) + 1;
-        int day = today.get(Calendar.DATE);
-        int day_of_week = today.get(Calendar.DAY_OF_WEEK);
+        int month = intent.getIntExtra("month",date_default);
+        int day = intent.getIntExtra("day",date_default);
+        int day_of_week = intent.getIntExtra("day_of_week",date_default);
 
         txtV_year.setText(txt_year.substring(2));
         txtV_month.setText(Integer.toString(month));
