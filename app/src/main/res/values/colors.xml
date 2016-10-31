@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="shape_date">#73B71C1C</color>
     <color name="backgroud">#f8f9f9</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="blue_50">#CCB71C1C</color>
+    <color name="white_20">#32FFFFFF</color>
+    <color name="black_10">#16000000</color>
 </resources>

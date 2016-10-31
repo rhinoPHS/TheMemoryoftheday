@@ -36,10 +36,32 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
     private static final String NAME = "OneMonthView";
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
 
+    public interface OnClickDayListener{
+        void onClick(OneDayView odv);
+    }
+
     private int mYear;
     private int mMonth;
     private ArrayList<LinearLayout> weeks = null;
     private ArrayList<OneDayView> dayViews = null;
+
+
+    private OnClickDayListener onClickDayListener;
+    private final OnClickDayListener dummyClickDayListener = new OnClickDayListener() {
+        @Override
+        public void onClick(OneDayView odv) {
+            HLog.d(TAG, CLASS, "Dummy OnClickDayListener-- click on day " + odv.get(Calendar.MONTH) + "/" + odv.get(Calendar.DAY_OF_MONTH));
+        }
+    };
+    public void setOnClickDayListener(OnClickDayListener onClickDayListener) {
+        if (onClickDayListener != null) {
+            this.onClickDayListener = onClickDayListener;
+        }
+        else {
+            this.onClickDayListener = dummyClickDayListener;
+        }
+    }
+
 
     public OneMonthView(Context context) {
         this(context, null);
@@ -53,6 +75,8 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         super(context, attrs, defStyle);
 
         setOrientation(LinearLayout.VERTICAL);
+
+        onClickDayListener = dummyClickDayListener;
 
         //Prepare many day-views enough to prevent recreation.
         if(weeks == null) {
@@ -227,25 +251,6 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         }
         return temp;
     }
-    public interface OnDayClickListener {
-        void onClick(int month, int day);
-    }
-
-    /**
-     * dummy listener
-     */
-    private OnDayClickListener dummyListener = new OnDayClickListener() {
-        @Override
-        public void onClick(int month, int day) {
-        }
-    };
-
-    private OnDayClickListener listener = dummyListener;
-
-    public void setOnDayClickListener(OnDayClickListener listener) {
-        if (listener == null) this.listener = dummyListener;
-        else this.listener = listener;
-    }
 
     @Override
     public void onClick(View v) {
@@ -254,8 +259,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         month = ov.get(Calendar.MONTH) + 1;
         day = ov.get(Calendar.DAY_OF_MONTH);
         HLog.d(TAG, CLASS, "click " + month + "/" + day);
-
-        listener.onClick(month,day);
+        this.onClickDayListener.onClick(ov);
 
     }
 

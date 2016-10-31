@@ -17,7 +17,7 @@
         android:id="@+id/relaitve_oneday"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/ondaylineframe">
+        android:background="@drawable/day_cell_bg">
 
         <TextView
             android:padding="4dp"

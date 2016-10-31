@@ -10,11 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.skapp.lj.thememoryoftheday.cal.OneDayView;
 import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 import com.tsengvn.typekit.TypekitContextWrapper;
+
+import java.util.Calendar;
 
 import static com.skapp.lj.thememoryoftheday.R.string.month;
 
@@ -54,6 +58,14 @@ public class Main2Activity extends FragmentActivity {
                 txtYear.setText(Integer.toString(year).substring(2));
                 txtMonth.setText(Integer.toString(month+1));
             }
+
+            @Override
+            public void onDayClick(OneDayView dayView) {
+                int month =  dayView.get(Calendar.MONTH) + 1;
+                int day = dayView.get(Calendar.DAY_OF_MONTH);
+                Toast.makeText(Main2Activity.this, "Click  " + month + "/" + day, Toast.LENGTH_SHORT)
+                        .show();
+            }
         });
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -65,13 +77,6 @@ public class Main2Activity extends FragmentActivity {
         });
 
     }
-    public void setTextDay(int month, int day)
-    {
-        txtYear.setText(month);
-        txtMonth.setText(day);
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

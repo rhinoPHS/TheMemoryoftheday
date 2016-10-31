@@ -18,18 +18,16 @@ package com.skapp.lj.thememoryoftheday;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
+
+import com.skapp.lj.thememoryoftheday.cal.OneDayView;
 import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
@@ -64,6 +62,9 @@ public class MonthlyFragment extends Fragment {
          * @param month number of month (0~11)
          */
         void onChange(int year, int month);
+
+        void onDayClick(OneDayView dayView);
+
     }
 
     /**
@@ -71,8 +72,10 @@ public class MonthlyFragment extends Fragment {
      */
     private OnMonthChangeListener dummyListener = new OnMonthChangeListener() {
         @Override
-        public void onChange(int year, int monthy) {
-        }
+        public void onChange(int year, int monthy) {}
+
+        @Override
+        public void onDayClick(OneDayView dayView) {}
     };
 
     private OnMonthChangeListener listener = dummyListener;
@@ -145,20 +148,6 @@ public class MonthlyFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        oneMonthView = (OneMonthView)getActivity().findViewById(R.id.omv);
-
-        oneMonthView.setOnDayClickListener(new OneMonthView.OnDayClickListener() {
-            @Override
-            public void onClick(int month, int day) {
-                ((Main2Activity) getActivity()).setTextDay(month, day);
-            }
-        });
-    }
-
-    @Override
     public void onDetach() {
         setOnMonthChangeListener(null);
         super.onDetach();
@@ -170,6 +159,12 @@ public class MonthlyFragment extends Fragment {
 
     }
 
+    private OneMonthView.OnClickDayListener onClickDayListener = new OneMonthView.OnClickDayListener(){
+        @Override
+        public void onClick(OneDayView odv){
+            listener.onDayClick(odv);
+        }
+    };
 
     /**
      * Object to preserve year and month
@@ -179,7 +174,6 @@ public class MonthlyFragment extends Fragment {
     public class YearMonth {
         public int year;
         public int month;
-        public int day;
 
         public YearMonth(int year, int month) {
             this.year = year;
@@ -294,6 +288,7 @@ public class MonthlyFragment extends Fragment {
             container.addView(monthViews[position]);
 
             monthViews[position].make(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+            monthViews[position].setOnClickDayListener(onClickDayListener);
 
             return monthViews[position];
         }
@@ -301,6 +296,7 @@ public class MonthlyFragment extends Fragment {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             HLog.d(TAG, CLASS, "destroyItem " + position);
+            ((OneMonthView)object).setOnClickDayListener(null);
             container.removeView((View) object);
         }
 
