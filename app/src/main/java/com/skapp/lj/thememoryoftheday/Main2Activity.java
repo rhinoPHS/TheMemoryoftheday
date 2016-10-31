@@ -71,13 +71,21 @@ public class Main2Activity extends FragmentActivity {
                 startActivityForResult(intent,ACT_MainActivity);
             }
         });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Calendar today = Calendar.getInstance();
+
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
+                intent.putExtra("year",today.get(Calendar.YEAR));
+                intent.putExtra("month",today.get(Calendar.MONTH)+1);
+                intent.putExtra("day",today.get(Calendar.DATE));
+                intent.putExtra("day_of_week",today.get(Calendar.DAY_OF_WEEK));
+                startActivityForResult(intent,ACT_MainActivity);
             }
         });
+
     }
 
     @Override

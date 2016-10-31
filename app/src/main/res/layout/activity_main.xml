@@ -61,24 +61,16 @@
     <!--android:gravity="top"-->
     <!--android:scrollbars="vertical"-->
     <!--android:textSize="22sp" />-->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/realtive"
-        android:id="@+id/txt_title"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ondaylineframe">
 
         <ImageButton
-            android:id="@+id/txt_title1"
+            android:layout_below="@+id/realtive"
+            android:background="@drawable/day_cell_bg"
+            android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="50dp"
             android:minWidth="50dp"
-            android:text="제목" />
-
-    </RelativeLayout>
-
+            android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="50dp"

@@ -288,6 +288,7 @@ public class MonthlyFragment extends Fragment {
             container.addView(monthViews[position]);
 
             monthViews[position].make(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH));
+
             monthViews[position].setOnClickDayListener(onClickDayListener);
 
             return monthViews[position];
@@ -296,7 +297,9 @@ public class MonthlyFragment extends Fragment {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             HLog.d(TAG, CLASS, "destroyItem " + position);
+
             ((OneMonthView)object).setOnClickDayListener(null);
+            
             container.removeView((View) object);
         }
 

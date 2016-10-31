@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         txtV_month = (TextView) findViewById(R.id.txtV_month);
         txtV_day = (TextView) findViewById(R.id.txtV_day);
         txtV_week = (TextView) findViewById(R.id.txtV_week);
-        imageBtn_txt_title = (ImageButton)findViewById(R.id.txt_title1);
+        imageBtn_txt_title = (ImageButton)findViewById(R.id.txt_title);
 
 
         int year = intent.getIntExtra("year",date_default);
