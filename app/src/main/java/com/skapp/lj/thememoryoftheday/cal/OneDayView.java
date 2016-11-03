@@ -18,8 +18,6 @@ package com.skapp.lj.thememoryoftheday.cal;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.icu.text.SimpleDateFormat;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -27,18 +25,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.skapp.lj.thememoryoftheday.R;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
-import com.skapp.lj.thememoryoftheday.R;
 
 import java.util.Calendar;
-
-import static android.R.attr.shape;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.CLOUDY;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.RAINNY;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SNOW;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUNSHINE;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUN_CLOUND;
 
 /**
  * View to display a day
@@ -50,6 +41,7 @@ public class OneDayView extends RelativeLayout {
     private static final String TAG = MConfig.TAG;
     private static final String NAME = "OneDayView";
     private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
+
 
     /**
      * number text field
@@ -118,6 +110,7 @@ public class OneDayView extends RelativeLayout {
         this.one.setDay((Calendar) cal.clone());
     }
 
+
     /**
      * Set the day to display
      *
@@ -184,23 +177,12 @@ public class OneDayView extends RelativeLayout {
      */
     public void refresh() {
 
+        Calendar today = Calendar.getInstance();
+
         //HLog.d(TAG, CLASS, "refresh");
-        HLog.d(TAG,CLASS,"Integer.toString(one.get(Calendar.YEAR))"+Integer.toString(one.get(Calendar.YEAR)));
-        HLog.d(TAG,CLASS,"Integer.toString(Calendar.YEAR)"+Integer.toString(Calendar.YEAR));
-        HLog.d(TAG,CLASS,"Integer.toString(one.get(Calendar.Month))"+Integer.toString(one.get(Calendar.MONTH)));
-        HLog.d(TAG,CLASS,"Integer.toString(Calendar.Month)"+Integer.toString(Calendar.MONTH));
-        HLog.d(TAG,CLASS,"Integer.toString(one.get(Calendar.DAY_OF_MONTH))"+Integer.toString(one.get(Calendar.DAY_OF_MONTH)));
-        HLog.d(TAG,CLASS,"Integer.toString(Calendar.DAY_OF_MONTH)"+Integer.toString(Calendar.DAY_OF_MONTH));
 
         dayTv.setText(String.valueOf(one.get(Calendar.DAY_OF_MONTH)));
 
-        if (one.get(Calendar.YEAR) == Calendar.YEAR &&
-                one.get(Calendar.MONTH) == Calendar.MONTH &&
-                one.get(Calendar.DAY_OF_MONTH) == Calendar.DAY_OF_MONTH)
-        {
-            dayTv.setTextColor(ContextCompat.getColor(getContext(), R.color.shape_date));
-            dayTv.setTypeface(null, Typeface.BOLD);
-        }
 
         if (one.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             dayTv.setTextColor(Color.RED);
@@ -208,6 +190,12 @@ public class OneDayView extends RelativeLayout {
             dayTv.setTextColor(Color.BLUE);
         } else {
             dayTv.setTextColor(Color.BLACK);
+        }
+
+        if ((one.get(Calendar.YEAR)) == (today.get(Calendar.YEAR)) &&
+                (one.get(Calendar.MONTH)) == (today.get(Calendar.MONTH)) &&
+                (one.get(Calendar.DATE)) == (today.get(Calendar.DATE))) {
+            dayTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.shape_date));
         }
 
 

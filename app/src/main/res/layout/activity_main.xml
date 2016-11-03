@@ -49,34 +49,32 @@
             android:background="@color/shape_date" />
     </RelativeLayout>
 
-    <!--<view xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:id="@+id/body"-->
-    <!--class="com.skapp.lj.thememoryoftheday.MainActivity$LineEditText"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:layout_below="@id/realtive"-->
-    <!--android:layout_marginTop="72dp"-->
-    <!--android:background="@drawable/shape_date"-->
-    <!--android:fadingEdge="vertical"-->
-    <!--android:gravity="top"-->
-    <!--android:scrollbars="vertical"-->
-    <!--android:textSize="22sp" />-->
 
-        <ImageButton
-            android:layout_below="@+id/realtive"
-            android:background="@drawable/day_cell_bg"
+    <RelativeLayout
+        android:id="@+id/txt_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/realtive"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/day_cell_bg"
+        android:padding="4dp">
+
+        <Button
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="50dp"
-            android:minWidth="50dp"
-            android:layout_centerHorizontal="true"/>
+            android:text="제목"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="50dp"
         android:layout_height="@dimen/line"
-        android:layout_above="@id/txt_title"
-        android:layout_alignEnd="@id/txt_title"
+        android:layout_above="@id/txt_title1"
+        android:layout_alignStart="@id/txt_title1"
+        android:layout_alignEnd="@id/txt_title1"
         android:layout_marginBottom="2dp"
         android:background="@color/shape_date" />
 
@@ -84,20 +82,84 @@
         android:id="@+id/end_line"
         android:layout_width="50dp"
         android:layout_height="@dimen/line"
-        android:layout_alignEnd="@id/txt_title"
-        android:layout_below="@+id/txt_title"
+        android:layout_alignStart="@id/txt_title1"
+        android:layout_alignEnd="@id/txt_title1"
+        android:layout_below="@+id/txt_title1"
         android:layout_marginTop="2dp"
         android:background="@color/shape_date" />
 
+
     <EditText
+        android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/end_line"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:background="@drawable/edittextbg"
         android:focusableInTouchMode="true"
-        android:gravity="center" />
+        android:gravity="center"
+        android:padding="8dp" />
 
+    <Button
+        android:id="@+id/save_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/body"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/day_cell_bg"
+        android:onClick="dbQuery"
+        android:padding="4dp"
+        android:text="저장" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/line"
+        android:layout_above="@id/save_update"
+        android:layout_alignEnd="@id/save_update"
+        android:layout_alignStart="@id/save_update"
+        android:layout_marginBottom="2dp"
+        android:background="@color/shape_date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/line"
+        android:layout_alignEnd="@id/save_update"
+        android:layout_alignStart="@id/save_update"
+        android:layout_below="@+id/save_update"
+        android:layout_marginTop="2dp"
+        android:background="@color/shape_date" />
+
+
+    <Button
+        android:id="@+id/cancle_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/body"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="4dp"
+        android:background="@drawable/day_cell_bg"
+        android:onClick="dbQuery"
+        android:padding="4dp"
+        android:text="취소" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/line"
+        android:layout_above="@id/cancle_delete"
+        android:layout_alignEnd="@id/cancle_delete"
+        android:layout_alignStart="@id/cancle_delete"
+        android:layout_marginBottom="2dp"
+        android:background="@color/shape_date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/line"
+        android:layout_alignEnd="@id/cancle_delete"
+        android:layout_alignStart="@id/cancle_delete"
+        android:layout_below="@+id/cancle_delete"
+        android:layout_marginTop="2dp"
+        android:background="@color/shape_date" />
 
     <RelativeLayout
         android:id="@+id/realtive2"

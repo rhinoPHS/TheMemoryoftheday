@@ -78,6 +78,7 @@ public class MonthlyFragment extends Fragment {
         public void onDayClick(OneDayView dayView) {}
     };
 
+
     private OnMonthChangeListener listener = dummyListener;
 
     /**

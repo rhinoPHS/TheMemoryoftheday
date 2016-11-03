@@ -10,17 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.skapp.lj.thememoryoftheday.cal.OneDayView;
-import com.skapp.lj.thememoryoftheday.cal.OneMonthView;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 import com.tsengvn.typekit.TypekitContextWrapper;
 
 import java.util.Calendar;
-
-import static com.skapp.lj.thememoryoftheday.R.string.month;
 
 
 public class Main2Activity extends FragmentActivity {
@@ -38,6 +34,11 @@ public class Main2Activity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        final Calendar today = Calendar.getInstance();
+        final int today_year = today.get(Calendar.YEAR);
+        final int today_month = today.get(Calendar.MONTH);
+        final int today_date = today.get(Calendar.DATE);
+
         Button addButton = (Button) findViewById(R.id.main_add_bt);
         Button monthButton = (Button) findViewById(R.id.main_monthly_bt);
         Button weekButton = (Button) findViewById(R.id.main_weekly_bt);
@@ -46,7 +47,7 @@ public class Main2Activity extends FragmentActivity {
         txtYear = (TextView)findViewById(R.id.txtV_year);
         txtMonth = (TextView)findViewById(R.id.txtV_month);
 
-        MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
+       final MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
 
         mf.setOnMonthChangeListener(new MonthlyFragment.OnMonthChangeListener() {
             @Override
@@ -58,6 +59,7 @@ public class Main2Activity extends FragmentActivity {
             }
             @Override
             public void onDayClick(OneDayView dayView) {
+
                 int year = dayView.get(Calendar.YEAR);
                 int month =  dayView.get(Calendar.MONTH) + 1;
                 int day = dayView.get(Calendar.DAY_OF_MONTH);

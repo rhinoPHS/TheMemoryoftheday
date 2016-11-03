@@ -77,7 +77,7 @@ public class QuickAction extends PopupWindows {
 
 	public void addActionItem(ActionItem action) {
 
-		String title = action.getTitle();
+//		String title = action.getTitle();
 		Drawable icon = action.getIcon();
 
 		View container = (View) inflater.inflate(R.layout.action_item, null);
