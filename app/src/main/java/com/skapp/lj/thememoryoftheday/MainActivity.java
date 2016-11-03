@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 //            btn_save_update.setText("수정");
 //            btn_cancle_delete.setId(R.id.delete);
 //            btn_cancle_delete.setText("삭제");
-        getdata();
+              getdata();
 //        }
 //        else
 //        {

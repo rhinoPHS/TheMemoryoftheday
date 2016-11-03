@@ -34,6 +34,8 @@ import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 
 import java.util.Calendar;
 
+import com.skapp.lj.thememoryoftheday.db.DiaryDBHelper;
+
 
 /**
  * Fragment for displaying the monthly-calendar
@@ -124,6 +126,7 @@ public class MonthlyFragment extends Fragment {
 
         HLog.d(TAG, CLASS, "onCreate " + mYear + "." + mMonth);
 
+
     }
 
 
@@ -188,7 +191,6 @@ public class MonthlyFragment extends Fragment {
      * @author Brownsoo
      */
     class MonthlySlidePagerAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
-
 
         @SuppressWarnings("unused")
         private Context mContext;

@@ -17,6 +17,8 @@
 package com.skapp.lj.thememoryoftheday.cal;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -26,10 +28,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.skapp.lj.thememoryoftheday.R;
-import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 
 import java.util.Calendar;
+
+import com.skapp.lj.thememoryoftheday.db.DiaryDBHelper;
+
+import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.CLOUDY;
+import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.RAINNY;
+import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SNOW;
+import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUNSHINE;
+import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUN_CLOUND;
 
 /**
  * View to display a day
@@ -37,6 +46,8 @@ import java.util.Calendar;
  * @author Brownsoo
  */
 public class OneDayView extends RelativeLayout {
+
+    DiaryDBHelper mHelper;
 
     private static final String TAG = MConfig.TAG;
     private static final String NAME = "OneDayView";
@@ -177,6 +188,54 @@ public class OneDayView extends RelativeLayout {
      */
     public void refresh() {
 
+        int year = one.get(Calendar.YEAR);
+        int month = one.get(Calendar.MONTH);
+        int date = one.get(Calendar.DATE);
+
+        int titleNumber = 0;
+        String day = null;
+        mHelper = new DiaryDBHelper(getContext());
+
+        String curDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(date);
+
+        SQLiteDatabase db = mHelper.getReadableDatabase();
+
+        Cursor cursor;
+
+        cursor = db.query("diary", new String[]{"title","date"}, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+
+            titleNumber = cursor.getInt(0);
+            day = cursor.getString(1);
+
+            if (curDate == day) {
+                switch (titleNumber) {
+                    case 1:
+                        weatherIv.setImageResource(R.drawable.heart);
+                        break;
+                    case 2:
+                        weatherIv.setImageResource(R.drawable.question);
+                        break;
+                    case 3:
+                        weatherIv.setImageResource(R.drawable.em);
+                        break;
+                    case 4:
+                        weatherIv.setImageResource(R.drawable.comma);
+                        break;
+                    case 5:
+                        weatherIv.setImageResource(R.drawable.period);
+                        break;
+                    case 6:
+                        weatherIv.setImageResource(R.drawable.star);
+                        break;
+                    case 7:
+                        weatherIv.setImageResource(R.drawable.sd);
+                        break;
+                }
+            }
+
+        }
+
         Calendar today = Calendar.getInstance();
 
         //HLog.d(TAG, CLASS, "refresh");
@@ -192,30 +251,14 @@ public class OneDayView extends RelativeLayout {
             dayTv.setTextColor(Color.BLACK);
         }
 
-        if ((one.get(Calendar.YEAR)) == (today.get(Calendar.YEAR)) &&
-                (one.get(Calendar.MONTH)) == (today.get(Calendar.MONTH)) &&
-                (one.get(Calendar.DATE)) == (today.get(Calendar.DATE))) {
+        if (year == (today.get(Calendar.YEAR)) && month == (today.get(Calendar.MONTH)) && date == (today.get(Calendar.DATE))) {
             dayTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.shape_date));
         }
 
 
         //msgTv.setText((one.getMessage()==null)?"":one.getMessage());
+        //one.weather
 
-//        switch(one.weather) {
-//        case CLOUDY :
-//        case SUN_CLOUND :
-//            weatherIv.setImageResource(R.drawable.heart);
-//            break;
-//        case RAINNY :
-//            weatherIv.setImageResource(R.drawable.heart);
-//            break;
-//        case SNOW :
-//            weatherIv.setImageResource(R.drawable.heart);
-//            break;
-//        case SUNSHINE :
-//            weatherIv.setImageResource(R.drawable.heart);
-//            break;
-//        }
 
     }
 
