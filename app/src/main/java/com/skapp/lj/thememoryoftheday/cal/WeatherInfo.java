@@ -24,10 +24,13 @@ package com.skapp.lj.thememoryoftheday.cal;
 public class WeatherInfo {
 
     public enum Weather {
-        SUNSHINE, 
-        SUN_CLOUND, 
-        CLOUDY, 
-        RAINNY, 
-        SNOW
+        HEART,
+        QUESTION,
+        EM,
+        COMMA,
+        PERIOD,
+        STAR,
+        SD,
+        empty
     }
 }

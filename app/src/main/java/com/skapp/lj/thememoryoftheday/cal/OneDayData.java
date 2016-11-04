@@ -35,9 +35,11 @@ public class OneDayData {
     /**
      * OneDayData Constructor
      */
+
+
     public OneDayData() {
         this.cal = Calendar.getInstance();
-        this.weather = Weather.SUNSHINE;
+        this.weather = Weather.empty;
     }
     
     /**

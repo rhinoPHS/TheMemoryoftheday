@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.skapp.lj.thememoryoftheday.cal.OneDayView;
+import com.skapp.lj.thememoryoftheday.cal.WeatherInfo;
 import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 import com.tsengvn.typekit.TypekitContextWrapper;
@@ -64,12 +65,21 @@ public class Main2Activity extends FragmentActivity {
                 int month =  dayView.get(Calendar.MONTH) + 1;
                 int day = dayView.get(Calendar.DAY_OF_MONTH);
                 int day_of_week = dayView.get(Calendar.DAY_OF_WEEK);
+                String weather;
+
+                if(dayView.getWeather().equals(WeatherInfo.Weather.empty)) {
+                    weather = null;
+                }
+                else{
+                    weather = dayView.getWeather().toString();
+                }
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("year",year);
                 intent.putExtra("month",month);
                 intent.putExtra("day",day);
                 intent.putExtra("day_of_week",day_of_week);
+                intent.putExtra("weather",weather);
                 startActivityForResult(intent,ACT_MainActivity);
             }
         });
@@ -87,6 +97,8 @@ public class Main2Activity extends FragmentActivity {
                 startActivityForResult(intent,ACT_MainActivity);
             }
         });
+
+
 
     }
 

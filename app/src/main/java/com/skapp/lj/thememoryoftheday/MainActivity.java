@@ -21,6 +21,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
+import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
 import com.skapp.lj.thememoryoftheday.db.DiaryDBHelper;
 import com.skapp.lj.thememoryoftheday.quickAction.ActionItem;
 import com.skapp.lj.thememoryoftheday.quickAction.QuickAction;
@@ -32,6 +34,10 @@ import static com.skapp.lj.thememoryoftheday.R.drawable.em;
 import static com.skapp.lj.thememoryoftheday.R.id.body;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MConfig.TAG;
+    private static final String NAME = "MainActivity";
+    private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
 
     DiaryDBHelper mHelper;
 
@@ -94,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         int month = intent.getIntExtra("month", date_default);
         int day = intent.getIntExtra("day", date_default);
         int day_of_week = intent.getIntExtra("day_of_week", date_default);
+        String weather = intent.getStringExtra("weather");
 
         txtV_year.setText(txt_year.substring(2));
         txtV_month.setText(Integer.toString(month));
@@ -103,21 +110,21 @@ public class MainActivity extends AppCompatActivity {
         curDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(day);
 
         // if diary already exists
-//        if(true)
-//        {
-//            btn_save_update.setId(R.id.update);
-//            btn_save_update.setText("수정");
-//            btn_cancle_delete.setId(R.id.delete);
-//            btn_cancle_delete.setText("삭제");
-              getdata();
-//        }
-//        else
-//        {
-//            btn_save_update.setId(R.id.save);
-//            btn_save_update.setText("저장");
-//            btn_cancle_delete.setId(R.id.cancle);
-//            btn_cancle_delete.setText("취소");
-//        }
+        if(weather != null)
+        {
+            btn_save_update.setId(R.id.update);
+            btn_save_update.setText("수정");
+            btn_cancle_delete.setId(R.id.delete);
+            btn_cancle_delete.setText("삭제");
+            getdata();
+        }
+        else
+        {
+            btn_save_update.setId(R.id.save);
+            btn_save_update.setText("저장");
+            btn_cancle_delete.setId(R.id.cancle);
+            btn_cancle_delete.setText("취소");
+        }
 
 //        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main);
 //        layout.setBackground(new BitmapDrawable(getResources(),
@@ -290,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dbQuery(View v) {
+        Intent intent = new Intent(this,Main2Activity.class);
         int titleNumber = 0;
         String body = null;
         if (v.getId() != R.id.cancle && v.getId() != R.id.cancle_delete) {
@@ -309,15 +317,15 @@ public class MainActivity extends AppCompatActivity {
                 db.insert("diary", null, row);
                 mHelper.close();
                 Toast.makeText(this, "저장완료", Toast.LENGTH_SHORT).show();
-                finish();
+                startActivity(intent);
                 break;
-
             case R.id.delete:
                 db = mHelper.getWritableDatabase();
                 db.delete("diary", "date" + "=" + curDate, null);
                 mHelper.close();
                 Toast.makeText(this, "삭제완료", Toast.LENGTH_SHORT).show();
-                finish();
+                Intent intent1 = new Intent(this,Main2Activity.class);
+                startActivity(intent);
                 break;
 
             case R.id.update:
@@ -329,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                 db.update("diary", row, "date" + "=" + curDate, null);
                 mHelper.close();
                 Toast.makeText(this, "수정완료", Toast.LENGTH_SHORT).show();
-                finish();
+                startActivity(intent);
                 break;
 
             case R.id.cancle:

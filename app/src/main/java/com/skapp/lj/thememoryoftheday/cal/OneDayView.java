@@ -28,17 +28,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.skapp.lj.thememoryoftheday.R;
+import com.skapp.lj.thememoryoftheday.calLogConfig.HLog;
 import com.skapp.lj.thememoryoftheday.calLogConfig.MConfig;
-
-import java.util.Calendar;
-
 import com.skapp.lj.thememoryoftheday.db.DiaryDBHelper;
 
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.CLOUDY;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.RAINNY;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SNOW;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUNSHINE;
-import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUN_CLOUND;
+import java.util.Calendar;
 
 /**
  * View to display a day
@@ -47,7 +41,8 @@ import static com.skapp.lj.thememoryoftheday.cal.WeatherInfo.Weather.SUN_CLOUND;
  */
 public class OneDayView extends RelativeLayout {
 
-    DiaryDBHelper mHelper;
+    private DiaryDBHelper mHelper;
+    private SQLiteDatabase db;
 
     private static final String TAG = MConfig.TAG;
     private static final String NAME = "OneDayView";
@@ -99,6 +94,8 @@ public class OneDayView extends RelativeLayout {
         weatherIv = (ImageView) v.findViewById(R.id.onday_weatherIv);
         //msgTv = (TextView) v.findViewById(R.id.onday_msgTv);
         one = new OneDayData();
+
+        mHelper = new DiaryDBHelper(getContext());
     }
 
     /**
@@ -182,6 +179,10 @@ public class OneDayView extends RelativeLayout {
     public void setWeather(WeatherInfo.Weather weather) {
         this.one.setWeather(weather);
     }
+    public WeatherInfo.Weather getWeather()
+    {
+        return this.one.getWeather();
+    }
 
     /**
      * Updates UI upon the value object.
@@ -192,56 +193,67 @@ public class OneDayView extends RelativeLayout {
         int month = one.get(Calendar.MONTH);
         int date = one.get(Calendar.DATE);
 
-        int titleNumber = 0;
-        String day = null;
-        mHelper = new DiaryDBHelper(getContext());
 
-        String curDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(date);
+        String curDate = Integer.toString(year) + Integer.toString(month + 1) + Integer.toString(date);
 
-        SQLiteDatabase db = mHelper.getReadableDatabase();
+        db = mHelper.getReadableDatabase();
 
         Cursor cursor;
 
-        cursor = db.query("diary", new String[]{"title","date"}, null, null, null, null, null);
-        while (cursor.moveToNext()) {
+        cursor = db.query("diary", new String[]{"title", "date"}, null, null, null, null, null);
 
-            titleNumber = cursor.getInt(0);
-            day = cursor.getString(1);
+          try {
+              while (cursor.moveToNext()) {
 
-            if (curDate == day) {
-                switch (titleNumber) {
-                    case 1:
-                        weatherIv.setImageResource(R.drawable.heart);
-                        break;
-                    case 2:
-                        weatherIv.setImageResource(R.drawable.question);
-                        break;
-                    case 3:
-                        weatherIv.setImageResource(R.drawable.em);
-                        break;
-                    case 4:
-                        weatherIv.setImageResource(R.drawable.comma);
-                        break;
-                    case 5:
-                        weatherIv.setImageResource(R.drawable.period);
-                        break;
-                    case 6:
-                        weatherIv.setImageResource(R.drawable.star);
-                        break;
-                    case 7:
-                        weatherIv.setImageResource(R.drawable.sd);
-                        break;
-                }
-            }
+                  int titleNumber = cursor.getInt(0);
+                  String day = cursor.getString(1);
 
-        }
+                  HLog.d(TAG, CLASS, "refresh   /   " + curDate + "  /  " + day + "  /  " + titleNumber);
+
+                  if (curDate.equals(day)) {
+                      switch (titleNumber) {
+                          case 1:
+                              weatherIv.setImageResource(R.drawable.heart);
+                              setWeather(WeatherInfo.Weather.HEART);
+                              break;
+                          case 2:
+                              weatherIv.setImageResource(R.drawable.question);
+                              setWeather(WeatherInfo.Weather.QUESTION);
+                              break;
+                          case 3:
+                              weatherIv.setImageResource(R.drawable.em);
+                              setWeather(WeatherInfo.Weather.EM);
+                              break;
+                          case 4:
+                              weatherIv.setImageResource(R.drawable.comma);
+                              setWeather(WeatherInfo.Weather.COMMA);
+                              break;
+                          case 5:
+                              weatherIv.setImageResource(R.drawable.period);
+                              setWeather(WeatherInfo.Weather.PERIOD);
+                              break;
+                          case 6:
+                              weatherIv.setImageResource(R.drawable.star);
+                              setWeather(WeatherInfo.Weather.STAR);
+                              break;
+                          case 7:
+                              weatherIv.setImageResource(R.drawable.sd);
+                              setWeather(WeatherInfo.Weather.SD);
+                              break;
+                      }
+                  }
+              }
+          }catch (Exception e){e.printStackTrace();}
+        finally {
+              cursor.close();
+              mHelper.close();
+          }
+
+
 
         Calendar today = Calendar.getInstance();
-
         //HLog.d(TAG, CLASS, "refresh");
-
         dayTv.setText(String.valueOf(one.get(Calendar.DAY_OF_MONTH)));
-
 
         if (one.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             dayTv.setTextColor(Color.RED);
