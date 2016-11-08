@@ -32,8 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_month"
-            android:text="@string/monthly"
             android:textSize="14sp" />
 
         <Button
@@ -41,8 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_week"
-            android:text="@string/weekly"
             android:textSize="14sp" />
 
         <Button
@@ -50,8 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:drawableLeft="@android:drawable/ic_menu_day"
-            android:text="@string/daily"
+
             android:textSize="14sp" />
     </LinearLayout>
 

@@ -90,12 +90,12 @@
 
 
     <EditText
+        android:textSize="25sp"
         android:id="@+id/body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/end_line"
         android:layout_marginTop="4dp"
-        android:background="@drawable/edittextbg"
         android:focusableInTouchMode="true"
         android:gravity="center"
         android:padding="8dp" />
@@ -194,21 +194,26 @@
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:id="@+id/lock"
             style="@style/CustomTextView"
             android:layout_toRightOf="@id/txtV_week2"
             android:text="록"
             tools:ignore="RtlHardcoded" />
 
         <TextView
+            android:layout_alignStart="@id/txtV_year2"
+            android:layout_alignEnd="@id/lock"
             android:layout_width="250dp"
             android:layout_height="0.5dp"
             android:layout_marginTop="22dp"
             android:background="@color/shape_date" />
 
         <TextView
+            android:layout_alignStart="@id/txtV_year2"
             android:layout_width="250dp"
             android:layout_height="@dimen/line"
-            android:layout_below="@+id/txtV_year2"
+            android:layout_below="@id/txtV_year2"
+            android:layout_alignEnd="@id/lock"
             android:layout_marginTop="2dp"
             android:background="@color/shape_date" />
     </RelativeLayout>

@@ -76,11 +76,14 @@ public class MainActivity extends AppCompatActivity {
         mHelper = new DiaryDBHelper(this);
 
 
-//        BitmapFactory.Options options = new BitmapFactory.Options();
-//        options.inSampleSize =2;
+        options.inSampleSize =4;
 //        RelativeLayout layout = (RelativeLayout) findViewById(R.id.activity_main);
 //        layout.setBackground(new BitmapDrawable(getResources(),
-//                BitmapFactory.decodeResource(getResources(),R.drawable.hangi,options)));
+//                BitmapFactory.decodeResource(getResources(),R.drawable.mainbackground)));
+
+        EditText editTextbody = (EditText)findViewById(R.id.body);
+        editTextbody.setBackground(new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(),R.drawable.edittextbg,options)));
 
 
         btn_save_update = (Button) findViewById(R.id.save_update);
@@ -224,9 +227,6 @@ public class MainActivity extends AppCompatActivity {
                 mQuickAction.show(view);
             }
         });
-
-        new OptionalDependencies(this).initialize();
-
 
     }
 
